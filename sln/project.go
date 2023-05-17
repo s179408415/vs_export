@@ -41,6 +41,7 @@ type ItemDefinitionGroup struct {
 type ClCompile struct {
 	XMLName                      xml.Name `xml:"ClCompile"`
 	AdditionalIncludeDirectories string   `xml:"AdditionalIncludeDirectories"`
+	AdditionalOptions	     string   `xml:"AdditionalOptions"`
 	PreprocessorDefinitions      string   `xml:"PreprocessorDefinitions"`
 }
 
@@ -130,6 +131,20 @@ func (pro *Project) FindConfig(conf string) (string, string, error) {
 			}
 
 			include := cl.AdditionalIncludeDirectories
+			pattern := `\/extern:I\s*"([^"]+)"`
+
+			re := regexp.MustCompile(pattern)
+			matches := re.FindStringSubmatch(cl.AdditionalOptions)
+
+			if len(matches) > 1 {
+				substr := matches[1]
+				if len(include) > 0 {
+					include = include +";"+substr
+				} else {
+					include = substr
+				}
+			}
+
 			def := cl.PreprocessorDefinitions
 			for k, v := range willReplaceEnv {
 				if strings.Contains(include, k) {
