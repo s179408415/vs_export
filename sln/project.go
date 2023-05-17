@@ -152,7 +152,7 @@ func (pro *Project) FindConfig(conf string) (string, string, error) {
 				}
 			}
 
-			re := regexp.MustCompile(`\$\(.+\)`)
+			re = regexp.MustCompile(`\$\(.+\)`)
 			badEnv := re.FindAllString(include, -1)
 			if len(badEnv) > 0 {
 				//fmt.Fprintf(os.Stderr, "%s:bad env[%v]\n", pro.ProjectPath, badEnv[:])
