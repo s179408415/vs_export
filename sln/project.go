@@ -140,6 +140,9 @@ func (pro *Project) FindConfig(conf string) (string, string, error) {
 			matches := re.FindStringSubmatch(cl.AdditionalOptions)
 
 			if len(matches) > 1 {
+				fmt.Println("===============")
+				fmt.Println(matches[1])
+				fmt.Println("===============")
 				substr := matches[1]
 				if len(include) > 0 {
 					include = include +";"+substr
