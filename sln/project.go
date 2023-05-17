@@ -134,6 +134,9 @@ func (pro *Project) FindConfig(conf string) (string, string, error) {
 			pattern := `\/extern:I\s*"([^"]+)"`
 
 			re := regexp.MustCompile(pattern)
+			fmt.Println("===============")
+			fmt.Println(cl.AdditionalOptions)
+			fmt.Println("===============")
 			matches := re.FindStringSubmatch(cl.AdditionalOptions)
 
 			if len(matches) > 1 {
