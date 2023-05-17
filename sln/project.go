@@ -131,18 +131,13 @@ func (pro *Project) FindConfig(conf string) (string, string, error) {
 			}
 
 			include := cl.AdditionalIncludeDirectories
-			pattern := `\/extern:I\s*"([^"]+)"`
+			pattern := `\/external:I\s*"([^"]+)"`
 
 			re := regexp.MustCompile(pattern)
-			fmt.Println("===============")
-			fmt.Println(cl.AdditionalOptions)
-			fmt.Println("===============")
+			
 			matches := re.FindStringSubmatch(cl.AdditionalOptions)
 
 			if len(matches) > 1 {
-				fmt.Println("===============")
-				fmt.Println(matches[1])
-				fmt.Println("===============")
 				substr := matches[1]
 				if len(include) > 0 {
 					include = include +";"+substr
@@ -150,7 +145,7 @@ func (pro *Project) FindConfig(conf string) (string, string, error) {
 					include = substr
 				}
 			}
-
+			
 			def := cl.PreprocessorDefinitions
 			for k, v := range willReplaceEnv {
 				if strings.Contains(include, k) {
