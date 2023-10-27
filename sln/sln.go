@@ -109,7 +109,7 @@ func preappend(sepedString string, append string) string {
 
 	for _, v := range defList {
 		if strings.Contains(v, " ") {
-			v = "\\\"" + v + "\\\""
+			v = "\"" + v + "\""
 		}
 		v = append + v + " "
 		output += v
