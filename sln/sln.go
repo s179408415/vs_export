@@ -93,7 +93,7 @@ func (sln *Sln) CompileCommandsJson(conf string) ([]CompileCommand, error) {
 			inc = RemoveBadInclude(inc)
 			inc = preappend(inc, "-I")
 
-			cmd := "clang-cl.exe " + def + " " + inc + " -c " + f
+			cmd := "clang-cl.exe /std:c++20 " + def + " " + inc + " -c " + f
 			item.Cmd = cmd
 
 			cmdList = append(cmdList, item)
