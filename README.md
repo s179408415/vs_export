@@ -19,4 +19,4 @@ this can export a compile_commands.json. the compile_commands.json can used by c
 
 
 ## add suport to find_package
-upstream fork doesn't support cmake find_package's referrence, that generated compile_command.json won't has include's item about libs introduced by find_package, this repository fixed this bug.
+upstream fork doesn't support cmake find_package's referrence, that generated compile_command.json won't has include's item about libs introduced by find_package, this repository fixed this bug
